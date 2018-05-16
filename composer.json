@@ -1,0 +1,13 @@
+{
+    "name": "adelf/sharedmemory",
+    "description": "Abstraction package to handle shared memory between works in PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Amadeus Delfino",
+            "email": "amadeus.cmd@gmail.com"
+        }
+    ],
+    "require": {}
+}
