@@ -6,16 +6,24 @@ namespace ADelf\SharedMemory;
 class Writer
 {
     protected $sharedMemoryResource;
+    protected $memoryControl;
 
     public function __construct($resource)
     {
         $this->sharedMemoryResource = $resource;
+        $this->memoryControl = new MemoryControl($resource);
         $this->writeDefaultValuesInMemory();
     }
 
     public function write($value)
     {
+        if($this->memoryControl->isLocked()) {
+            return false;
+        }
+
+        $this->memoryControl->lock();
         $this->incrementWriteOffset(shmop_write($this->sharedMemoryResource, $value, $this->getOffsetToWrite()));
+        $this->memoryControl->unlock();
 
         return $this;
     }

@@ -22,15 +22,16 @@ class MemoryControl
 
     public function lock()
     {
-
+        shmop_write($this->sharedMemoryResource, 1, 0);
     }
 
     public function unlock()
     {
+        shmop_write($this->sharedMemoryResource, 0, 0);
 
     }
 
-    public function isLocked()
+    public function isLocked( )
     {
         return (boolean) shmop_read(
             $this->sharedMemoryResource,
