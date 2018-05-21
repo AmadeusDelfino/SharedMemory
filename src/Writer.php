@@ -2,7 +2,6 @@
 
 namespace ADelf\SharedMemory;
 
-
 class Writer
 {
     protected $sharedMemoryResource;
@@ -17,7 +16,7 @@ class Writer
 
     public function write($value)
     {
-        if($this->memoryControl->isLocked()) {
+        if ($this->memoryControl->isLocked()) {
             return false;
         }
 
@@ -52,7 +51,6 @@ class Writer
     private function writeDefaultValuesInMemory()
     {
         shmop_write($this->sharedMemoryResource, ControlMarkings::LOCKED_FILE_INDICATOR_FALSE, ControlMarkings::LOCKED_FILE_INDICATOR_START);
-        shmop_write($this->sharedMemoryResource, ControlMarkings::CURRENT_OFFSET_FILE_OFFSET+1, ControlMarkings::CURRENT_OFFSET_FILE_START);
+        shmop_write($this->sharedMemoryResource, ControlMarkings::CURRENT_OFFSET_FILE_OFFSET + 1, ControlMarkings::CURRENT_OFFSET_FILE_START);
     }
-
 }

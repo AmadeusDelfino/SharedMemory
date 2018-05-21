@@ -2,7 +2,6 @@
 
 namespace ADelf\SharedMemory;
 
-
 class MemoryControl
 {
     protected $sharedMemoryResource;
@@ -13,7 +12,6 @@ class MemoryControl
     protected $permissionDefault = 0666;
     protected $resourceLocked = false;
     protected $memorySharedToken;
-
 
     public function __construct($resource = null)
     {
@@ -28,12 +26,11 @@ class MemoryControl
     public function unlock()
     {
         shmop_write($this->sharedMemoryResource, 0, 0);
-
     }
 
-    public function isLocked( )
+    public function isLocked()
     {
-        return (boolean) shmop_read(
+        return (bool) shmop_read(
             $this->sharedMemoryResource,
             ControlMarkings::LOCKED_FILE_INDICATOR_START,
             ControlMarkings::LOCKED_FILE_INDICATOR_OFFSET
@@ -72,5 +69,4 @@ class MemoryControl
     {
         return $this->sharedMemoryResource;
     }
-
 }
