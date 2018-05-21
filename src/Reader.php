@@ -2,7 +2,6 @@
 
 namespace ADelf\SharedMemory;
 
-
 class Reader
 {
     protected $sharedMemoryResource;
@@ -18,7 +17,7 @@ class Reader
     {
         return shmop_read(
             $this->sharedMemoryResource,
-            ControlMarkings::CURRENT_OFFSET_FILE_OFFSET+1,
+            ControlMarkings::CURRENT_OFFSET_FILE_OFFSET + 1,
             $this->writer->getLastWrittenPosition()
         );
     }

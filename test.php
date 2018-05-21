@@ -1,6 +1,7 @@
 <?php
 
 use ADelf\SharedMemory\SharedMemory;
+
 require 'vendor/autoload.php';
 require 'src/SharedMemory.php';
 

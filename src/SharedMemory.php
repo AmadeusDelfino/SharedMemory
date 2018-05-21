@@ -12,12 +12,13 @@ class SharedMemory
     protected $memoryControl;
 
     /**
-     * @return SharedMemory
      * @throws \Exception
+     *
+     * @return SharedMemory
      */
     public static function init()
     {
-        $instance = new self;
+        $instance = new self();
 
         $instance->memoryControl = new MemoryControl();
         $instance->memoryControl->initSharedMemory();
@@ -30,14 +31,13 @@ class SharedMemory
 
     public static function attach($memorySharedResource)
     {
-        $instance = new self;
+        $instance = new self();
         $instance->writer = new Writer($memorySharedResource);
         $instance->reader = new Reader($memorySharedResource);
         $instance->memoryControl = new MemoryControl($memorySharedResource);
 
         return $instance;
     }
-
 
     public function write($value)
     {
